@@ -20,19 +20,19 @@ tempo=0
 for x in range(0,9):
         tempo += rByte(0)
 
+V1=(rByte(0)*3.3/4096)
 
-print "| Hum. | Temp. | Volt. | Val D. |"
-for x in range(5):
+
+r=[None,None]
+while (r[0])==None and (r[1])==None:
 	r = ada.read(sensor_type,18)
 	if (r[0])!= None:
-		print "| "+str((r[0]))+" | ",
+		print str((r[0]))+",",	#humedad
 	if (r[1])!= None:
-       		print str((r[1]))+" | ",
-	V1=(rByte(0)*3.3/4096)
-	print str(V1)+"  |  ",
-	
-print str( tempo/10)+"    |",
-
+       		print str((r[1]))+",",	#temperatura
+print str(V1)+",",		#voltaje
+print str(tempo/10)+",",	#decimal del voltaje
+print time.time()		#tiempo epoch
 
  
 

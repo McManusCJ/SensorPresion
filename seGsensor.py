@@ -1,7 +1,8 @@
+# -*- coding: utf-8 -*-
 import spidev
 import time
 import Adafruit_DHT as ada
-
+import os
 sensor_type = 11
 readings = [[],[]]
 
@@ -21,19 +22,11 @@ for x in range(0,9):
         tempo += rByte(0)
 
 
-print "| Hum. | Temp. | Volt. | Val D. |"
-for x in range(5):
-	r = ada.read(sensor_type,18)
-	if (r[0])!= None:
-		print "| "+str((r[0]))+" | ",
-	if (r[1])!= None:
-       		print str((r[1]))+" | ",
-	V1=(rByte(0)*3.3/4096)
-	print str(V1)+"  |  ",
-	
-print str( tempo/10)+"    |",
+#VREF=3.3
+VREF=5.0
+PMIN = 0
+PMAX = 51.98
 
-
- 
-
-
+V1=(rByte(1)*VREF/4096)
+print str(V1)+",",		#voltaje
+print str(tempo+1)
